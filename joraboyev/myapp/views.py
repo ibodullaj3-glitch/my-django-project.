@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
-def home(request):
-    user = {"username": "Joraboyev"}
-    return render(request, 'home.html', {'user': user})
-
+from .models import Blogs
 
 def about(request):
-    user = {"username": "Admin"}
-    return render(request, 'about.html', {'user': user})
+    blogs = Blogs.objects.all()
+    context = {
+        'blogs': blogs
+    }
+    return render(request, 'about.html', context)
